@@ -1,8 +1,25 @@
 <template src="./Wheel.html" />
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Wheel",
+
+  mounted: function(){
+    axios
+      .get("http://localhost:3000/", {
+      params: {
+        foods: ["Tacos", "Chinese food", "Mcdonalds", "Pizza", "Bowling"]
+      }
+      })
+      .then(response => {
+        console.log(this.prizeListOrigin);
+        this.prizeListOrigin = response.data;
+        console.log(response.data)
+      })
+    
+  },
 
   data() {
     return {
@@ -10,36 +27,7 @@ export default {
       rolling: false,
       wheelDeg: 0,
       prizeNumber: 8,
-      prizeListOrigin: [
-        {
-          icon: "https://picsum.photos/40?random=1",
-          name: "$10000"
-        },
-        {
-          icon: "https://picsum.photos/40?random=6",
-          name: "Thank you!"
-        },
-        {
-          icon: "https://picsum.photos/40?random=2",
-          name: "$500"
-        },
-      ],
-      // options: {
-      //   options: [
-      //     "Korean",
-      //     "Fastfood",
-      //     "Mexican",
-      //     "Japanese",
-      //     "Thai",
-      //     "Chinese",
-      //     "Fried Chicken",
-      //     "Italian",
-      //     "Bowling",
-      //     "Hiking",
-      //     "Ethiopian",
-      //     "Taiwanese"
-      //   ],
-      // }
+      prizeListOrigin: [],
     };
   },
 
