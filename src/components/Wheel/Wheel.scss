@@ -1,0 +1,108 @@
+.wheel {
+  position: absolute;
+  height: 100%;
+  position: relative;
+}
+.wheel-wrapper {
+  width: 420px;
+  height: 420px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // background-color: orange;
+  text-align: center;
+  // border-radius: 100%;
+
+  // .wheel-options-wrapper {
+  //   border: 1px rgba(0, 0, 0, 0.048) solid;
+  //   position: absolute;
+  //   width: 560px;
+  //   height: 560px;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   border-radius: 100%;
+  // }
+
+  .wheel-option {
+    // border: 1px black solid;
+    position: absolute;
+    height: 65%;
+    width: 50%;
+    transform-origin: bottom;
+    display: inline-block;
+    left: 25%;
+    top: -14%;
+    // background-color: purple;
+  }
+}
+
+.wheel-pointer {
+  width: 60px;
+  height: 60px;
+  border-radius: 1000px;
+  background: yellow;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: 60px;
+  z-index: 10;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    border-width: 0 8px 40px;
+    border-style: solid;
+    border-color: transparent transparent yellow;
+    transform: translateX(-50%);
+  }
+}
+.wheel-bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 1000px;
+  overflow: hidden;
+  transition: transform 4s ease-in-out;
+  background: #7eef97;
+
+  &.freeze {
+    transition: none;
+    background: red;
+  }
+}
+
+.prize-list {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.prize-item-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 210px;
+  height: 210px;
+}
+
+.prize-item {
+  // border: 1px black solid;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom;
+
+  .prize-name {
+    padding: 16px 0;
+  }
+
+  // .prize-icon {
+  // }
+}

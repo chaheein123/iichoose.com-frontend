@@ -1,0 +1,30 @@
+<div class="wheel">
+  <div class="wheel-wrapper">
+
+    <!-- <div class="wheel-options-wrapper">
+    </div> -->
+
+    <!-- <div class="wheel-option" v-for="(option,index) in options.options" :style="`transform: rotate(${index * 30}deg)`"
+      :key="index">
+      {{option}}
+    </div> -->
+
+    <div class="wheel-pointer" @click="onClickRotate">
+      Start
+    </div>
+    <div class="wheel-bg" :class="{freeze: freeze}" :style="`transform: rotate(${wheelDeg}deg)`">
+      <div class="prize-list">
+        <div class="prize-item-wrapper" v-for="(item,index) in prizeList" :key="index">
+          <div class="prize-item" :style="`transform: rotate(${(360/ prizeList.length) * index}deg)`">
+            <div class="prize-name">
+              {{ item.name }}
+            </div>
+            <div class="prize-icon">
+              <img :src="item.icon">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
