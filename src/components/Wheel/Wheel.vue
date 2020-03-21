@@ -14,9 +14,7 @@ export default {
       }
       })
       .then(response => {
-        console.log(this.prizeListOrigin);
         this.prizeListOrigin = response.data;
-        console.log(response.data)
       })
     
   },
@@ -44,7 +42,6 @@ export default {
       }
       const result = Math.floor(Math.random() * this.prizeList.length);
       this.roll(result);
-      console.log(this.prizeList[result]["name"])
     },
     roll(result) {
       this.rolling = true;

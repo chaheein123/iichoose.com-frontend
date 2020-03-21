@@ -2,11 +2,13 @@
 
 <script>
 import Wheel from "../../components/Wheel/Wheel";
+import BottomNav from "../../components/BottomNav/BottomNav";
 
 export default {
   name: "LandingPage",
   components: {
-    Wheel
+    Wheel,
+    BottomNav
   },
   // data: () => {
 
