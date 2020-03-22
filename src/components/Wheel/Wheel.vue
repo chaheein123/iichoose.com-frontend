@@ -2,22 +2,10 @@
 
 <script>
 import axios from "axios";
+import {EventBus} from "../../event-bus";
 
 export default {
   name: "Wheel",
-
-  mounted: function(){
-    axios
-      .get("http://localhost:3000/", {
-      params: {
-        foods: ["Tacos", "Chinese food", "Mcdonalds", "Pizza", "Bowling"]
-      }
-      })
-      .then(response => {
-        this.prizeListOrigin = response.data;
-      })
-    
-  },
 
   data() {
     return {
@@ -56,6 +44,24 @@ export default {
         alert("Result：" + prizeList[result].name);
       }, 4500);
     }
+  },
+
+  created: function(){
+
+    EventBus.$on("updatedOptions", updatedOptions => {
+      let modifiedPrizeList = this.prizeListOrigin.map(option => option.name);
+      if (JSON.stringify(updatedOptions) != JSON.stringify(modifiedPrizeList)){
+        axios
+          .get("http://localhost:3000/", {
+          params: {
+            foods: updatedOptions
+          }
+          })
+          .then(response => {
+            this.prizeListOrigin = response.data;
+          })
+      }
+    })
   },
 
   watch: {
