@@ -14,7 +14,8 @@ export default {
     EventBus.$emit("updatedOptions", {optionList});
     EventBus.$on("wheelDone", result => {
       if (this.cuttingMode){
-        this.e7.splice(result,1)
+        this.e7.splice(result,1);
+        this.cuttingIndex = result;
       }
     })
   },
@@ -22,12 +23,14 @@ export default {
   updated: function(){
     if (!this.dialog){
       let optionList = this.e7.map(option => Object.keys(option)[0]);
-      EventBus.$emit("updatedOptions", {optionList, cuttingMode:this.cuttingMode});
+      EventBus.$emit("updatedOptions", {"cuttingIndex": this.cuttingIndex, "optionList":optionList});
+      this.cuttingIndex = null;
     }
   },
 
   data: function () {
     return {
+      cuttingIndex:null,
       dialog: false,
       e7: [
         {"Bowling":true},

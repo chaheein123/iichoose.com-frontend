@@ -14,6 +14,7 @@ export default {
       wheelDeg: 0,
       prizeNumber: 8,
       prizeListOrigin: [],
+      afterDone: false,
     };
   },
 
@@ -41,6 +42,7 @@ export default {
         (360 - 360 / prizeList.length * result);
       setTimeout(() => {
         this.rolling = false;
+        // if (afterDone)
         alert("Result：" + prizeList[result].name);
         EventBus.$emit("wheelDone", result)
 
@@ -49,20 +51,22 @@ export default {
   },
 
   created: function(){
-
     EventBus.$on("updatedOptions", updatedOptions => {
-      console.log(updatedOptions.cuttingMode, "산소부족행");
       let modifiedPrizeList = this.prizeListOrigin.map(option => option.name);
       if (JSON.stringify(updatedOptions.optionList) != JSON.stringify(modifiedPrizeList)){
-        axios
-          .get("http://localhost:3000/", {
-          params: {
-            foods: updatedOptions.optionList
-          }
-          })
-          .then(response => {
-            this.prizeListOrigin = response.data;
-          })
+        if (updatedOptions.cuttingIndex == undefined || updatedOptions.cuttingIndex == null){
+          axios
+            .get("http://localhost:3000/", {
+            params: {
+              foods: updatedOptions.optionList
+            }
+            })
+            .then(response => {
+              this.prizeListOrigin = response.data;
+            })
+        } else {
+          this.prizeListOrigin.splice(updatedOptions.cuttingIndex,1);
+        }
       }
     });
   },
@@ -74,6 +78,7 @@ export default {
 
       setTimeout(() => {
         this.freeze = false;
+
       }, 0);
     }
   }
