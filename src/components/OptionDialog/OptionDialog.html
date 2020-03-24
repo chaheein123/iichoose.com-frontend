@@ -16,18 +16,12 @@
       <v-card-text>
         <v-text-field label="Enter your option" @keyup.enter="inputEnter()" ref="input" v-model="inputValue">
         </v-text-field>
-        <!-- <v-select v-model="e7" :items="options" label="...Or select from these options" multiple chips
-          hint="Choose up to 8 choices" persistent-hint></v-select> -->
+
         <div class="text-center">
-          <!-- <v-btn v-if="!chip1 && !chip2 && !chip3 && !chip4" close color="primary" dark
-            @click="chip1 = true, chip2 = true, chip3 = true, chip4= true">
-            Reset Chips
-          </v-btn> -->
-
-          <v-chip v-if="chip1" class="ma-2" close @click:close="chip1 = false" v-for="(item,index) in e7">
-            {{item}}
+          <v-chip v-if="e7[index][Object.keys(e7[index])[0]]" class="ma-2" close @click:close="chipsChange(index,item)"
+            v-for="(item,index) in e7" :key="index">
+            {{Object.keys(item)[0]}}
           </v-chip>
-
         </div>
       </v-card-text>
 
@@ -36,6 +30,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="primary" text @click="dialog = false">
+
           Ok
         </v-btn>
       </v-card-actions>

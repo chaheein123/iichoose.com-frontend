@@ -42,6 +42,8 @@ export default {
       setTimeout(() => {
         this.rolling = false;
         alert("Result：" + prizeList[result].name);
+        EventBus.$emit("wheelDone", result)
+
       }, 4500);
     }
   },
@@ -49,19 +51,20 @@ export default {
   created: function(){
 
     EventBus.$on("updatedOptions", updatedOptions => {
+      console.log(updatedOptions.cuttingMode, "산소부족행");
       let modifiedPrizeList = this.prizeListOrigin.map(option => option.name);
-      if (JSON.stringify(updatedOptions) != JSON.stringify(modifiedPrizeList)){
+      if (JSON.stringify(updatedOptions.optionList) != JSON.stringify(modifiedPrizeList)){
         axios
           .get("http://localhost:3000/", {
           params: {
-            foods: updatedOptions
+            foods: updatedOptions.optionList
           }
           })
           .then(response => {
             this.prizeListOrigin = response.data;
           })
       }
-    })
+    });
   },
 
   watch: {

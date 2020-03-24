@@ -1,16 +1,21 @@
 <v-bottom-navigation v-model="bottomNav" grow height=58 app>
 
-  <OptionDialog />
+  <OptionDialog :cuttingMode="cuttingMode" :yelpMode="yelpMode" />
 
-  <v-btn height="100%">
-    <span>Turn on cutting mode</span>
-    <v-icon>mdi-box-cutter</v-icon>
+  <v-btn height="100%" @click="turnCutterMode()">
+    <span v-if="cuttingMode">Turn off cutting mode</span>
+    <span v-else>Turn on cutting mode</span>
+
+    <v-icon v-if="cuttingMode">mdi-box-cutter-off</v-icon>
+    <v-icon v-else>mdi-box-cutter</v-icon>
   </v-btn>
 
-  <v-btn height="100%">
-    <span>Turn off Yelp</span>
-    <!-- <v-icon>mdi-api</v-icon> -->
-    <v-icon>mdi-api-off</v-icon>
+  <v-btn height="100%" @click="turnYelpAPI()">
+    <span v-if="yelpMode">Turn off Yelp</span>
+    <span v-else>Turn on Yelp</span>
+
+    <v-icon v-if="yelpMode">mdi-api-off</v-icon>
+    <v-icon v-else>mdi-api</v-icon>
   </v-btn>
 
 </v-bottom-navigation>
