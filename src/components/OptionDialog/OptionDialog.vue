@@ -13,11 +13,17 @@ export default {
     let optionList = this.e7.map(option => Object.keys(option)[0]);
     EventBus.$emit("updatedOptions", {optionList});
     EventBus.$on("wheelDone", result => {
+      if (this.yelpMode){
+        // console.log("yelp mode onss")
+        EventBus.$emit("yelpDialogOn", this.e7[result])
+      }
+
       if (this.cuttingMode){
         this.e7.splice(result,1);
         this.cuttingIndex = result;
       }
-    })
+      
+    });
   },
 
   updated: function(){

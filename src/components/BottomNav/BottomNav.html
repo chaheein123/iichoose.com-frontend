@@ -10,12 +10,27 @@
     <v-icon v-else>mdi-box-cutter</v-icon>
   </v-btn>
 
-  <v-btn height="100%" @click="turnYelpAPI()">
-    <span v-if="yelpMode">Turn off Yelp</span>
-    <span v-else>Turn on Yelp</span>
 
-    <v-icon v-if="yelpMode">mdi-api-off</v-icon>
-    <v-icon v-else>mdi-api</v-icon>
-  </v-btn>
+
+  <v-tooltip top>
+    <!-- <v-btn height="100%" @click="turnYelpAPI()">
+      <span v-if="yelpMode">Turn off Yelp</span>
+      <span v-else>Turn on Yelp</span>
+
+      <v-icon v-if="yelpMode">mdi-api-off</v-icon>
+      <v-icon v-else>mdi-api</v-icon>
+    </v-btn> -->
+    <template v-slot:activator="{ on }">
+      <v-btn height="100%" @click="turnYelpAPI()" v-on="on">
+        <span v-if="yelpMode">Turn off Yelp</span>
+        <span v-else>Turn on Yelp</span>
+
+        <v-icon v-if="yelpMode">mdi-api-off</v-icon>
+        <v-icon v-else>mdi-api</v-icon>
+      </v-btn>
+    </template>
+    <span>We'll give you Yelp recommendations after each turn. Try it!</span>
+
+  </v-tooltip>
 
 </v-bottom-navigation>

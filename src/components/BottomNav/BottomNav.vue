@@ -13,7 +13,7 @@
       return {
         bottomNav: 'recent',
         cuttingMode: false,
-        yelpMode: true,
+        yelpMode: false,
       }
     },
 
@@ -22,8 +22,21 @@
         this.cuttingMode = !this.cuttingMode
       },
       turnYelpAPI: function(){
-        this.yelpMode = !this.yelpMode
+        if (this.yelpMode) {
+          this.yelpMode = false
+        } else {
+          navigator.geolocation.getCurrentPosition(pos => {
+            localStorage.setItem("latitude", pos.coords.latitude);
+            localStorage.setItem("longitude", pos.coords.longitude);
+            this.yelpMode = true;
+          }, () => {
+            alert("Please enable location information for this website in order to use the Yelp recommendation feature")
+          }
+          )
+        }
       }
     }
   }
 </script>
+
+<style lang="scss" src="./BottomNav.scss" scoped />

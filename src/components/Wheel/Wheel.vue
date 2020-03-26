@@ -42,10 +42,9 @@ export default {
         (360 - 360 / prizeList.length * result);
       setTimeout(() => {
         this.rolling = false;
-        // if (afterDone)
-        alert("Result：" + prizeList[result].name);
-        EventBus.$emit("wheelDone", result)
-
+        // alert("Result：" + prizeList[result].name);
+        EventBus.$emit("wheelDone", result);
+        
       }, 4500);
     }
   },
@@ -78,7 +77,6 @@ export default {
 
       setTimeout(() => {
         this.freeze = false;
-
       }, 0);
     }
   }
