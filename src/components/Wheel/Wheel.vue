@@ -42,8 +42,7 @@ export default {
         (360 - 360 / prizeList.length * result);
       setTimeout(() => {
         this.rolling = false;
-        // alert("Result：" + prizeList[result].name);
-        EventBus.$emit("wheelDone", result);
+        EventBus.$emit("wheelDone", {result, resultImg: this.prizeListOrigin[result]["icon"]});
         
       }, 4500);
     }

@@ -12,18 +12,20 @@ export default {
   created: function(){
     let optionList = this.e7.map(option => Object.keys(option)[0]);
     EventBus.$emit("updatedOptions", {optionList});
-    EventBus.$on("wheelDone", result => {
-      if (this.yelpMode){
-        // console.log("yelp mode onss")
-        EventBus.$emit("yelpDialogOn", this.e7[result])
-      }
-
-      if (this.cuttingMode){
-        this.e7.splice(result,1);
-        this.cuttingIndex = result;
-      }
+    EventBus.$on("wheelDone", value => {
       
+      let resultIndex = value.result;
+      if (this.yelpMode){
+        EventBus.$emit("yelpDialogOn", this.e7[resultIndex])
+      } else {
+        let resultImg = value.resultImg;
+        EventBus.$emit("regularDialogOn", {resultKey:this.e7[resultIndex], resultImg, resultIndex});
+      }
     });
+    EventBus.$on("eliminateOption", value => {
+      this.e7.splice(value,1);
+      this.cuttingIndex = value;
+    })
   },
 
   updated: function(){

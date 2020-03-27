@@ -4,6 +4,7 @@
 import Wheel from "../../components/Wheel/Wheel";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import YelpDialogue from "../../components/YelpDialog/YelpDialog.vue";
+import RegularDialog from "../../components/RegularDialog/RegularDialog.vue"
 // import {EventBus} from "../../event-bus.js";
 
 export default {
@@ -13,6 +14,7 @@ export default {
     Wheel,
     BottomNav,
     YelpDialogue,
+    RegularDialog,
   },
 }
 </script>
