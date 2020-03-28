@@ -26,11 +26,13 @@ export default {
 
   methods: {
     onClickRotate() {
-      if (this.rolling) {
-        return;
+      if (this.prizeListOrigin.length > 0){
+        if (this.rolling) {
+          return;
+        }
+        const result = Math.floor(Math.random() * this.prizeList.length);
+        this.roll(result);
       }
-      const result = Math.floor(Math.random() * this.prizeList.length);
-      this.roll(result);
     },
     roll(result) {
       this.rolling = true;
@@ -63,7 +65,9 @@ export default {
               this.prizeListOrigin = response.data;
             })
         } else {
-          this.prizeListOrigin.splice(updatedOptions.cuttingIndex,1);
+          if (this.prizeListOrigin) {
+            this.prizeListOrigin.splice(updatedOptions.cuttingIndex,1);
+          }
         }
       }
     });

@@ -10,6 +10,7 @@ export default {
   created: function(){
     EventBus.$on("yelpDialogOn", result => {
       let searchKey = Object.keys(result)[0];
+      this.searchKey = searchKey;
       axios
         .get(
           "http://localhost:3000/yelpAPI",
@@ -21,15 +22,23 @@ export default {
             }
           }
         )
-        .then (() => {
-          this.dialog = true
+        .then ((response) => {
+        
+          this.results = response.data.result;
+          this.dialog = true;
+        })
+        .catch(() => {
+          return;
         })
     });
   },
 
   data () {
     return {
+      searchKey: "",
       dialog: false,
+      results: null,
+      error: false,
     }
   },
 }
