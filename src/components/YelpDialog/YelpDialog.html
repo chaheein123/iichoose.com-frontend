@@ -12,9 +12,14 @@
           There is no result for '{{searchKey}}' from Yelp.
         </h3>
         <div v-else class="results-wrapper">
-          <div v-for="(result,key) in results" class="result">
-            <h2 :key="key" class="result-header">{{result.name}}</h2>
-            <div :key="key" class="result-content">
+          <div v-for="(result) in results" class="result">
+            <h2 class="result-header">
+              {{result.name}}
+              <a :href="result.url" target="_blank">
+                <img src="../../assets/yelplogo.png" width="40px" height="20px" class="yelplogo" />
+              </a>
+            </h2>
+            <div class="result-content">
               <a :href="result.url" target="_blank" class="result-content-img">
                 <img :src="result.image_url" :alt="result.name" width="100%" height="100%" />
               </a>
@@ -34,16 +39,22 @@
                   {{result.review_count}} reviews
                 </p>
                 <p>
+                  <strong>{{result.price}}</strong>
                   <span v-for="(category,key) in result['categories']">
+
                     <span :key="key" v-if="key !=result['categories'].length-1">
                       {{category.title}},
                     </span>
                     <span :key="key" v-else>
                       {{category.title}}
                     </span>
-
                   </span>
-
+                </p>
+                <p>
+                  {{result.location.display_address.join(" ")}}
+                </p>
+                <p>
+                  {{result.display_phone}}
                 </p>
 
               </div>
@@ -54,8 +65,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-        <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
+        <v-btn color="green darken-1" text @click="dialog = false">Ok</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
