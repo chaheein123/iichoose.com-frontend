@@ -56,7 +56,7 @@ export default {
       if (JSON.stringify(updatedOptions.optionList) != JSON.stringify(modifiedPrizeList)){
         if (updatedOptions.cuttingIndex == undefined || updatedOptions.cuttingIndex == null){
           axios
-            .get("http://localhost:3000/", {
+            .get("api/", {
             params: {
               foods: updatedOptions.optionList
             }
