@@ -13,7 +13,7 @@ export default {
       this.searchKey = searchKey;
       axios
         .get(
-          "api/yelpAPI",
+          "http://iichoose.com/api/yelpAPI",
           {
             params: {
               latitude: localStorage.getItem("latitude"),
