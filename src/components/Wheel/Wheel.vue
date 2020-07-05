@@ -56,7 +56,7 @@ export default {
       if (JSON.stringify(updatedOptions.optionList) != JSON.stringify(modifiedPrizeList)){
         if (updatedOptions.cuttingIndex == undefined || updatedOptions.cuttingIndex == null){
           axios
-            .get("http://iichoose.com/api/", {
+            .get("https://tdapi.iichoose.com/api/", {
             params: {
               foods: updatedOptions.optionList
             }
