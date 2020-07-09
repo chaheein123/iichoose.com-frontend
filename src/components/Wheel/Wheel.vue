@@ -55,15 +55,17 @@ export default {
       let modifiedPrizeList = this.prizeListOrigin.map(option => option.name);
       if (JSON.stringify(updatedOptions.optionList) != JSON.stringify(modifiedPrizeList)){
         if (updatedOptions.cuttingIndex == undefined || updatedOptions.cuttingIndex == null){
+          console.log(updatedOptions.optionList, "요우스스스");
           axios
-            .get("https://tdapi.iichoose.com/api/", {
-            params: {
+            .post('http://localhost:5000/api', {
               foods: updatedOptions.optionList
-            }
             })
-            .then(response => {
-              this.prizeListOrigin = response.data;
-            })
+
+
+          // axios.get('http://localhost:5000/api')
+          // .then(response => {
+          //   this.prizeListOrigin = response.data;
+          // })
         } else {
           if (this.prizeListOrigin) {
             this.prizeListOrigin.splice(updatedOptions.cuttingIndex,1);
